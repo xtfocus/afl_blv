@@ -1,0 +1,25 @@
+For this task, I will discuss Loss-chasing
+A. Loss chasing patterns is sequential
+This implies that if we want to detect loss chasing gambling, we cannot just look at individual transactions but at the sequence of transactions. At the simplest level, we can use simple programs to raise alert upon the breach of certain thresholds. For example:
+- A person lose in more than X% transactions in the nearest Y transactions
+- A person lose in more than X% transactions in the last Y hours.
+- A person's daily net balance is negative but the person is still playing for the last X transactions.
+
+These logics are simple but also vulnerable to outliers: Some people are more well-off and have no problem spending money no matter what the outcome is.
+
+To implement these algorithms, we need the history of transaction data of gamblers. The duration of this data may be the latest one/two weeks, so we don't have to worry about the velocity issue (too much data to monitor). For each transaction, we need to know at least:
+- Time
+- Amount
+- Odd(It's possible that desperate gamblers would cling on the thinnest odd)
+- Outcome
+
+B. A little bit more advanced
+As loss chasing is sequential, we can also use sequence modelling to train an AI that can detect this kind of behaviours. With the same data as above but combined with labels: positive for loss-chasing and negative for normal gambling.
+Although a simple recurrent neural network may suffice for this problem, it might be tricky to do the labelling task. We don't know exactly if someone is loss-chasing or not or just having fun no matter what the outcome is. 
+
+C. Intervention
+This is somewhat an extreme idea. From the perspective of a loss chasing gamblers, it is very likely that if we are to suspend them from the platform for a short duration (for instance, if they lose too much and too fast, we make them wait for another hour before they can continue gambling), they will instantly continue gambling the moment we let them back in again. This can be a very strong indicator of loss-chasing behaviour.
+And if this actually happens, we can suspend them for a little longer or directly contact and check up on them.
+
+D. Conclusion.
+To be honest, I did not have any major gambling experience in the past. As a result, some of my ideas are too simple, some might be too bias. I would love to know more about the complexity and difficulties of this problem.
